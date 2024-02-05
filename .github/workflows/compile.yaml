@@ -7,6 +7,8 @@ env:
 jobs:
   compile:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -17,8 +19,9 @@ jobs:
 
       - name: Compiling
         run: typst compile planner.typ
-      - run: sudo apt-get install -y poppler-utils
-      - run: pdftoppm -png planner.pdf assets/planner
+      - run: |
+          sudo apt-get install -y poppler-utils
+          pdftoppm -png planner.pdf assets/planner
 
       - name: Archive planner
         uses: actions/upload-artifact@v4
