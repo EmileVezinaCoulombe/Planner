@@ -11,10 +11,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - uses: dtolnay/rust-toolchain@nightly
+      - uses: baptiste0928/cargo-install@v3
         with:
-          components: typst-cli
-      - uses: Swatinem/rust-cache@v2
+          crate: typst-cli
+          git: https://github.com/typst/typst typst-cli
 
       - name: Compiling
         run: typst compile planner.typ
