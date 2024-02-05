@@ -17,12 +17,15 @@ jobs:
 
       - name: Compiling
         run: typst compile planner.typ
+      - run: pdftoppm -png planner.pdf assets/planner
 
       - name: Archive planner
         uses: actions/upload-artifact@v4
         with:
           name: planner
-          path: planner.pdf
+          path: |
+            planner.pdf
+            assets/planner*.png
 
   publish:
     needs: [compile]
@@ -42,4 +45,4 @@ jobs:
         with:
           commit_message: Planner compiled
           add_options: '--force'
-          file_pattern: planner.pdf
+          file_pattern: 'planner.pdf assets/planner*.png'
