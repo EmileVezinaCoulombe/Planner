@@ -13,7 +13,7 @@ jobs:
 
       - uses: dtolnay/rust-toolchain@nightly
         with:
-          components: typst
+          components: typst-cli
       - uses: Swatinem/rust-cache@v2
 
       - name: Compiling
