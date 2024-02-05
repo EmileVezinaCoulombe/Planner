@@ -17,6 +17,7 @@ jobs:
 
       - name: Compiling
         run: typst compile planner.typ
+      - run: sudo apt-get install -y poppler-utils
       - run: pdftoppm -png planner.pdf assets/planner
 
       - name: Archive planner
