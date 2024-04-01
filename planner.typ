@@ -127,7 +127,7 @@
         }
         #table(
             columns: (7em, 1fr, 3em), rows: taskNb + 1, inset: 8pt, align: (x, y) => (center, center, center, center).at(x),
-            fill: (_, row) => if row == 0 { tailwind.neutral-100 } else if row > taskNb - 2 { tailwind.teal-100 } else { white },
+            fill: (_, row) => if row == 0 { tailwind.neutral-100 } else if row > taskNb - 2 { tailwind.teal-100 },
             [*Time*], [*Task*], [*C*], ..tasks.flatten(),
         )
 
@@ -136,7 +136,14 @@
 
 #pagebreak()
 //***************************************************************************//
-// Page 2: Weekly                                                            //
+// Page 2: Blank                                                             //
+//***************************************************************************//
+#hide[Blank]
+
+#pagebreak()
+
+//***************************************************************************//
+// Page 3: Weekly                                                            //
 //***************************************************************************//
 #grid(
     columns: 1, rows: 3, row-gutter: 1fr, [
@@ -253,3 +260,40 @@
         )
     ],
 )
+
+#pagebreak()
+//***************************************************************************//
+// Page 4: Calendar                                                          //
+//***************************************************************************//
+
+
+#import table
+#let firstHour = 7
+#let lastHour = 18
+#let weekHours = ()
+#for i in array.range(firstHour, lastHour) {
+    weekHours.push((table.cell(rowspan: 4, stroke: none, align: horizon)[#text(8pt, [#i:00])], [], [], [], [], [], [], []))
+    weekHours.push(( [], [], [], [], [], [], []))
+    weekHours.push(( [], [], [], [], [], [], []))
+    weekHours.push(( [], [], [], [], [], [], []))
+    weekHours.push(table.hline(stroke: (thickness: 1pt)))
+}
+
+
+#let dayLenght = 6em
+
+#rotate(90deg)[
+#table(
+    columns: (3em, dayLenght, dayLenght, dayLenght, dayLenght, dayLenght, dayLenght, dayLenght),
+    stroke: 0.2pt,
+    inset: (y: 4pt),
+    fill: (_, row) => if row == 0 { tailwind.neutral-100 },
+    table.hline(stroke: none),
+    table.vline(stroke: none),
+    [Time], [Mon], [Tue], [Wed], [Thur], [Fri], [Sat], [Sun],
+    table.vline(stroke: 1pt),
+    ..weekHours.flatten(),
+    table.cell(inset: 4.8pt, align: horizon)[over time], [], [], [], [], [], [], [],
+    table.hline(stroke: 1pt),
+)
+]
