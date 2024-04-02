@@ -270,8 +270,8 @@
     weekHours.push(table.hline(stroke: (thickness: 1pt)))
 }
 
-#let dayLenght = 9em
-#v(1em)
+#let dayLenght = 8em
+#v(4em)
 #rotate(90deg)[
 #table(
     columns: (3em, dayLenght, dayLenght, dayLenght, dayLenght, dayLenght, dayLenght, dayLenght),
