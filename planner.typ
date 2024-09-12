@@ -7,8 +7,12 @@
 // Variables                                                                 //
 //***************************************************************************//
 #let cours = (
-    "Algo", "Santé & Sécurité", "Analyse numérique", "Interface",
-    "Spécification",
+    "Vision",
+    "Q & M",
+    "Architecture",
+    "Réseaux",
+    "IA",
+    "PGL",
 )
 
 #let checkBox(..x) = box(width: 10pt, height: 10pt, stroke: 1pt + black, radius: 2pt, ..x)
@@ -54,7 +58,7 @@
     )
 }
 
-#let weeklyTodoNb = 18
+#let weeklyTodoNb = 21
 #let weeklyTodos = ()
 #for i in array.range(weeklyTodoNb) {
     weeklyTodos.push(
